@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Espelhamento de Tela do Windows</title>
+    <style>
+        #screenDisplay {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <img id="screenDisplay" />
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const screenDisplay = document.getElementById('screenDisplay');
+        
+        socket.on('screen-data', (imageData) => {
+            screenDisplay.src = `data:image/png;base64,${imageData}`;
+        });
+    </script>
+</body>
+</html> 
